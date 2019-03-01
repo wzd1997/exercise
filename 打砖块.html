@@ -78,32 +78,32 @@
     <div class="wrapper container">
 
         <div class="row">
-            <div class="col-md-2">0</div>
-            <div class="col-md-2">1</div>
-            <div class="col-md-2">2</div>
-            <div class="col-md-2">3</div>
-            <div class="col-md-2">4</div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
         </div>
         <div class="row">
-            <div class="col-md-2">5</div>
-            <div class="col-md-2">6</div>
-            <div class="col-md-2">7</div>
-            <div class="col-md-2">8</div>
-            <div class="col-md-2">9</div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
         </div>
         <div class="row">
-            <div class="col-md-2">10</div>
-            <div class="col-md-2">11</div>
-            <div class="col-md-2">12</div>
-            <div class="col-md-2">13</div>
-            <div class="col-md-2">14</div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
         </div>
         <div class="row">
-            <div class="col-md-2">15</div>
-            <div class="col-md-2">16</div>
-            <div class="col-md-2">17</div>
-            <div class="col-md-2">18</div>
-            <div class="col-md-2">19</div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
         </div>
         <div class="ball"></div>
         <div class="row">
@@ -131,8 +131,9 @@
         var oBlock = document.getElementsByClassName('col-md-2');
         var oBlock_length = oBlock.length;
 
+        // 点击开始
         btnStart.onclick = function (e) {
-
+            // 鼠标移动挡板
             document.onmousemove = function (e) {
 
                 var event = e || window.event;
@@ -144,8 +145,7 @@
                 }
             }
 
-
-
+            // 各个砖块的宽高
             var arrLeft = [],
                 arrTop = [],
                 oBlock_Width = oBlock[0].offsetWidth,
@@ -156,8 +156,9 @@
                 arrLeft.push(oBlock[i].offsetLeft);
                 arrTop.push(oBlock[i].offsetTop);
             }
-            console.log(arrLeft, arrTop, oBlock_Width, oBlock_Height);
+
             clearInterval(oBall.timer);
+            // 撞击砖块事件
             oBall.timer = setInterval(function () {
 
                 var newLeft = oBall.offsetLeft + oSpeedX,
@@ -223,7 +224,7 @@
                     )
                 }
 
-
+                // 撞击边界
                 if (newLeft >= oWrapper.offsetWidth - oBall.offsetWidth) {
                     oSpeedX *= -1
                 }
@@ -250,6 +251,8 @@
 
                 oBall.style.left = newLeft + 'px';
                 oBall.style.top = newTop + 'px';
+
+                // 出界失败
                 if (newTop >= 600) {
                     clearInterval(oBall.timer);
                     oBall.style.left = '235px';
@@ -261,7 +264,7 @@
                     setTimeout("alert('失败了');", 500);
 
                 }
-
+                // 获胜
                 if (+mark.value === oBlock_length) {
                     clearInterval(oBall.timer);
                     setTimeout("alert('YOU WIN');location.reload(true);", 500);
